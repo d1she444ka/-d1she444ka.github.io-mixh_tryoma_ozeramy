@@ -215,7 +215,7 @@
         frameDiv.className = "photo-frame";
 
         const img = document.createElement("img");
-        img.alt = p.title; img.loading = "lazy"; img.src = "photos/" + p.num + ".jpg";
+        img.alt = p.title; img.loading = "lazy"; img.src = "./photos/" + p.num + ".jpg";
         img.onerror = function() {
             frameDiv.innerHTML = "<div class=\"photo-frame-placeholder\">" + ornSvg + "<span class=\"placeholder-num\">" + p.num + "</span><span class=\"placeholder-hint\">photos/" + p.num + ".jpg</span></div>";
         };
