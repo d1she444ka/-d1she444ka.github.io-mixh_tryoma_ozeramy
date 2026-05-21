@@ -215,11 +215,26 @@
         frameDiv.className = "photo-frame";
 
         const img = document.createElement("img");
-        const BASE = "/mixh_tryoma_ozeramy";
-        img.alt = p.title; img.loading = "lazy"; img.src = `${BASE}/photos/${p.num}.jpg`;
-        img.onerror = function() {
-            frameDiv.innerHTML = "<div class=\"photo-frame-placeholder\">" + ornSvg + "<span class=\"placeholder-num\">" + p.num + "</span><span class=\"placeholder-hint\">photos/" + p.num + ".jpg</span></div>";
+
+        img.alt = p.title;
+        img.loading = "lazy";
+        img.src = `./photos/${p.num}.JPG`;
+
+        img.onload = () => {
+            console.log("✅ LOADED:", img.src);
         };
+
+        img.onerror = () => {
+            console.log("❌ FAILED:", img.src);
+
+            frameDiv.innerHTML =
+                "<div class=\"photo-frame-placeholder\">" +
+                ornSvg +
+                "<span class=\"placeholder-num\">" + p.num + "</span>" +
+                "<span class=\"placeholder-hint\">photos/" + p.num + ".jpg</span>" +
+                "</div>";
+        };
+
         frameDiv.appendChild(img);
         frameDiv.addEventListener("click", () => openLb(i));
 
