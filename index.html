@@ -24,7 +24,13 @@
         .hero-scroll { margin-top: 4.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); cursor: pointer; opacity: 0; animation: fadeUp 1s ease 1.1s forwards; }
         .scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--muted), transparent); animation: pulse 2.2s ease-in-out infinite; }
         .exhibition { padding: 5rem 0 8rem; }
-        .ex-intro { max-width: 860px; margin: 0 auto 4rem; padding: 0 3rem; display: flex; align-items: baseline; gap: 1.5rem; }
+        .ex-intro {
+            max-width: 860px;
+            margin: 0 auto 4rem;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: center; /* 👈 додає центр по горизонталі */
+        }
         .ex-heading { font-family: "Cormorant Garamond", serif; font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); }
         .ex-count { font-size: 0.75rem; color: var(--muted); opacity: 0.5; }
         .photo-wall { max-width: 960px; margin: 0 auto; padding: 0 2rem; display: flex; flex-direction: column; gap: 0; }
@@ -138,7 +144,6 @@
 <section class="exhibition" id="exhibition">
     <div class="ex-intro">
         <h2 class="ex-heading">Виставкові роботи</h2>
-        <span class="ex-count">36 фотографій</span>
     </div>
     <div class="photo-wall" id="photoWall"></div>
 </section>
