@@ -113,15 +113,15 @@
     </button>
     <div class="audio-info">
         <span class="audio-label">Звуковий супровід</span>
-        <span class="audio-track">Тиша між озерами</span>
+        <span class="audio-track">Між озерами</span>
     </div>
     <div class="audio-prog"><div class="audio-prog-fill" id="progFill"></div></div>
 </div>
 
 <section class="hero">
     <p class="hero-label">· 2026 ·</p>
-    <h1 class="hero-title">Між трьома<br><em>озерами123</em></h1>
-    <p class="hero-author">Автор</p>
+    <h1 class="hero-title">Між трьома<br><em>озерами</em></h1>
+    <p class="hero-author">Авторка</p>
     <p class="hero-name">Діана Шльонська</p>
     <p class="hero-quote">«Серія знімків про місце, де час плине інакше — візуальна подорож у моє дитинство, у село під назвою Озірщина, що розкинулось між трьома озерами Спроба зупинити дорогу мені мить, яка непомітно відходить разом із часом.»</p>
     <div class="hero-scroll" onclick="document.getElementById('exhibition').scrollIntoView({behavior:'smooth'})">
@@ -263,7 +263,7 @@
         const img=document.createElement("img");img.alt=p.title;
         img.onload=()=>img.classList.add("loaded");
         img.onerror=()=>{wrap.innerHTML="<div class=\"lb-no-photo\"><strong>"+p.num+" — "+p.title+"</strong>Додайте файл <code>photos/"+p.num+".jpg</code></div>";};
-        img.src="photos/"+p.num+".jpg";wrap.appendChild(img);
+        img.src="photos/"+p.num+".JPG";wrap.appendChild(img);
     }
     document.getElementById("lightbox").addEventListener("click",e=>{if(e.target===document.getElementById("lightbox"))closeLb();});
     document.addEventListener("keydown",e=>{if(!document.getElementById("lightbox").classList.contains("open"))return;if(e.key==="ArrowRight")lbNav(1);if(e.key==="ArrowLeft")lbNav(-1);if(e.key==="Escape")closeLb();});
