@@ -14,32 +14,106 @@
         html { scroll-behavior: smooth; }
         body { background: var(--wall); color: var(--ink); font-family: "EB Garamond", Georgia, serif; font-size: 18px; line-height: 1.7; }
         body::before { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"); background-size: 256px; pointer-events: none; z-index: 900; }
-        .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 5rem 2rem; }
-        .hero-label { font-family: "Cormorant Garamond", serif; font-size: 0.78rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 1s ease 0.2s forwards; }
+
+        /* ── Фонові рослини ── */
+        .plant-bg-left {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 220px;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.18;
+            mix-blend-mode: multiply;
+        }
+        .plant-bg-right {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) scaleX(-1);
+            width: 220px;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.18;
+            mix-blend-mode: multiply;
+        }
+        .press-release-desc p { margin-top: 1rem; }
+
+        .photo-entry.center {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center;
+        }
+
+        .photo-entry.center .photo-frame {
+            grid-area: unset;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .photo-entry.center .photo-label {
+            grid-area: unset;
+            width: 100%;
+            max-width: 600px;
+            padding: 1rem 0 0;
+            align-items: center;
+            text-align: center;
+        }
+
+        .photo-entry.center .photo-desc-ex {
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        .plant-bg-left img, .plant-bg-right img { width: 100%; display: block; }
+        @media (max-width: 1200px) { .plant-bg-left, .plant-bg-right { width: 160px; } }
+        @media (max-width: 900px)  { .plant-bg-left, .plant-bg-right { width: 110px; opacity: 0.13; } }
+        @media (max-width: 700px)  { .plant-bg-left, .plant-bg-right { display: none; } }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            justify-content: flex-start;
+
+            text-align: center;
+            padding: 2rem 2rem 5rem;
+        }
+        .hero-label { font-family: "Cormorant Garamond", serif; font-size: 1.5rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 1s ease 0.2s forwards; }
         .hero-title { font-family: "Cormorant Garamond", serif; font-size: clamp(4rem, 11vw, 8rem); font-weight: 300; line-height: 1.0; color: var(--ink); opacity: 0; animation: fadeUp 1.2s ease 0.35s forwards; }
         .hero-title em { font-style: italic; color: var(--warm); }
-        .hero-quote { max-width: 500px; margin: 3rem auto 0; font-family: "Cormorant Garamond", serif; font-size: 1.15rem; font-style: italic; font-weight: 300; color: var(--muted); line-height: 1.7; opacity: 0; animation: fadeUp 1s ease 0.8s forwards; }
+        .hero-quote { max-width: 500px; margin: 3rem auto 0; font-family: "Cormorant Garamond", serif; font-size: 1.5rem; font-style: italic; font-weight: 300; color: var(--muted); line-height: 1.7; opacity: 0; animation: fadeUp 1s ease 0.8s forwards; }
         .hero-author { max-width: 500px; margin: 3rem auto 0; font-family: "Cormorant Garamond", serif; font-size: 1.5rem; font-style: italic; font-weight: 300; color: var(--muted); line-height: 1.7; opacity: 0; animation: fadeUp 1s ease 0.8s forwards; }
         .hero-name { max-width: 500px; margin: 3px auto 0; font-family: "Cormorant Garamond", serif; font-size: 1.5rem; font-style: italic; font-weight: 300; color: var(--muted); line-height: 1.7; opacity: 0; animation: fadeUp 1s ease 0.8s forwards; }
+        .press-release-desc {
+            width: 100%;
+            max-width: 900px;
+            margin: 3px auto 0;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.7;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.8s forwards;
+        }
+        .press-release-title { max-width: 500px; padding-top: 50px; margin: 3px auto 0; font-family: "Cormorant Garamond", serif; font-size: 2.5rem; font-style: italic; font-weight: 300; color: #272320; line-height: 1.7; opacity: 0; animation: fadeUp 1s ease 0.8s forwards; }
         .hero-scroll { margin-top: 4.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); cursor: pointer; opacity: 0; animation: fadeUp 1s ease 1.1s forwards; }
         .scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--muted), transparent); animation: pulse 2.2s ease-in-out infinite; }
         .exhibition { padding: 5rem 0 8rem; }
-        .ex-intro {
-            max-width: 860px;
-            margin: 0 auto 4rem;
-            padding: 0 3rem;
-            display: flex;
-            justify-content: center; /* 👈 додає центр по горизонталі */
-        }
-        .ex-heading { font-family: "Cormorant Garamond", serif; font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); }
+        .ex-intro { max-width: 860px; margin: 0 auto 4rem; padding: 0 3rem; display: flex; justify-content: center; }
+        .ex-heading { font-family: "Cormorant Garamond", serif; font-size: 1.5rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); }
         .ex-count { font-size: 0.75rem; color: var(--muted); opacity: 0.5; }
         .photo-wall { max-width: 960px; margin: 0 auto; padding: 0 2rem; display: flex; flex-direction: column; gap: 0; }
         .photo-entry { display: grid; gap: 0; padding: 3.5rem 0; border-bottom: 0.5px solid var(--border); opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .photo-entry.visible { opacity: 1; transform: translateY(0); }
         .photo-entry:nth-child(odd) { grid-template-columns: 1fr 280px; grid-template-areas: "img meta"; }
-        .photo-entry:last-child {
-            border-bottom: none;
-        }
+        .photo-entry:last-child { border-bottom: none; }
         .photo-entry:nth-child(even) { grid-template-columns: 280px 1fr; grid-template-areas: "meta img"; }
         .photo-entry.wide { grid-template-columns: 1fr; grid-template-areas: "img" "meta"; }
         .photo-entry.wide .photo-frame { max-height: 600px; }
@@ -57,8 +131,8 @@
         .photo-num-large { font-family: "Cormorant Garamond", serif; font-size: 4rem; font-weight: 300; line-height: 1; color: rgba(28,26,22,0.07); user-select: none; margin-bottom: 0.5rem; }
         .photo-entry.wide .photo-num-large { font-size: 2rem; color: rgba(28,26,22,0.12); }
         .photo-title-ex { font-family: "Cormorant Garamond", serif; font-size: 1.45rem; font-weight: 300; font-style: italic; color: var(--ink); line-height: 1.2; margin-bottom: 0.6rem; }
-        .photo-desc-ex { font-size: 0.85rem; color: var(--muted); line-height: 1.6; max-width: 220px; }
-        .photo-entry:nth-child(even) .photo-desc-ex, .photo-entry.wide .photo-desc-ex { max-width: 340px; }
+        .photo-desc-ex { padding-top: 30px; font-size: 1.2rem; color: var(--muted); line-height: 1.6; max-width: 220px; }
+        .photo-entry:nth-child(even) .photo-desc-ex, .photo-entry.wide .photo-desc-ex { max-width: 500px; }
         .photo-tag-ex { display: inline-block; margin-top: 1rem; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); opacity: 0.5; border-bottom: 0.5px solid currentColor; padding-bottom: 1px; min-width: 40px; }
         .audio-bar { position: fixed; bottom: 2rem; right: 2rem; z-index: 800; display: flex; align-items: center; gap: 0.75rem; background: rgba(242,237,227,0.95); backdrop-filter: blur(16px); border: 0.5px solid var(--border); border-radius: 50px; padding: 0.6rem 1.2rem 0.6rem 0.6rem; box-shadow: 0 2px 20px rgba(28,26,22,0.1); }
         .audio-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--ink); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, background 0.2s; flex-shrink: 0; }
@@ -70,7 +144,81 @@
         .audio-prog-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; }
         .closing { text-align: center; padding: 7rem 2rem 5rem; max-width: 580px; margin: 0 auto; }
         .closing-text { font-family: "Cormorant Garamond", serif; font-size: clamp(1.3rem, 3vw, 1.7rem); font-weight: 300; font-style: italic; line-height: 1.7; color: var(--ink); }
-        footer { border-top: 0.5px solid var(--border); padding: 2rem; text-align: center; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+        footer {
+            padding: 4rem 2rem 2.5rem;
+            text-align: center;
+        }
+        .footer-contacts-label {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.65rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--muted);
+            opacity: 0.55;
+            margin-bottom: 2rem;
+        }
+        .footer-contacts-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            max-width: 560px;
+            margin: 0 auto 2.5rem;
+        }
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--muted);
+            transition: color 0.25s, opacity 0.25s;
+            opacity: 0.75;
+        }
+        .footer-contact-item:hover {
+            color: var(--accent);
+            opacity: 1;
+        }
+        .footer-contact-item img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+            opacity: 0.5;
+            transition: opacity 0.25s;
+            filter: sepia(1) saturate(0.4) brightness(0.6);
+        }
+        .footer-contact-item:hover img {
+            opacity: 0.85;
+        }
+        .footer-copy {
+            font-size: 1.1rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--muted);
+            opacity: 0.4;
+        }
+        @media (max-width: 500px) {
+            .footer-contacts-grid { gap: 1.8rem; flex-direction: column; }
+        }
+        footer {
+            padding: 4rem 2rem 2.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        /* лінія футера */
+        footer::before {
+            content: "";
+            display: block;
+            width: 50%;
+            height: 0.5px;
+            background: var(--border);
+            margin: 0 auto 4rem;
+        }
         .divider { display: flex; align-items: center; gap: 1.5rem; max-width: 860px; margin: 0 auto; padding: 0 3rem; }
         .divider-line { flex: 1; height: 0.5px; background: var(--border); }
         .divider-mark { font-family: "Cormorant Garamond", serif; font-size: 1rem; color: var(--muted); opacity: 0.5; }
@@ -100,9 +248,22 @@
             .audio-bar { bottom: 1rem; right: 1rem; }
             .audio-prog { display: none; }
         }
+
+        .photo-entry.no-photo .photo-title-ex,
+        .photo-entry.no-photo .photo-desc-ex {
+            display: none;
+        }
     </style>
 </head>
 <body>
+
+<!-- Фонові рослини -->
+<div class="plant-bg-left">
+    <img src="./decor/plant1.jpg" alt="">
+</div>
+<div class="plant-bg-right">
+    <img class="mirror" src="./decor/plant1.jpg" alt="">
+</div>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
     <button class="lb-close" onclick="closeLb()" aria-label="Закрити">&#215;</button>
@@ -130,9 +291,9 @@
 <section class="hero">
     <p class="hero-label">· 2026 ·</p>
     <h1 class="hero-title">Між трьома<br><em>озерами</em></h1>
-    <p class="hero-author">Авторка</p>
-    <p class="hero-name">Діана Шльонська</p>
-    <p class="hero-quote">«Серія знімків про місце, де час плине інакше — візуальна подорож у моє дитинство, у село під назвою Озірщина, що розкинулось між трьома озерами. Спроба зупинити дорогу мені мить, яка непомітно відходить разом із часом.»</p>
+    <!--    <p class="hero-author">Авторка</p>-->
+    <!--    <p class="hero-name">Діана Шльонська</p>-->
+    <p class="hero-quote">Серія знімків про місце, де час плине інакше — візуальна подорож у моє дитинство, у село під назвою Озірщина, що розкинулось між трьома озерами. Спроба зупинити дорогу мені мить, яка непомітно відходить разом із часом, спосіб поділитися частинкою моєї душі разом з вами.</p>
     <div class="hero-scroll" onclick="scrollToExhibition()">
         <div class="scroll-line"></div>
         <span>до виставки</span>
@@ -151,96 +312,207 @@
 <div class="divider"><div class="divider-line"></div><span class="divider-mark">&#10022;</span><div class="divider-line"></div></div>
 
 <section class="closing">
-    <p class="closing-text">Для мене Озірщина — це нескінченне джерело любові до всього живого, місце, де я по-справжньому розумію, що таке дім.</p>
+    <p class="press-release-title">Пресреліз</p>
+    <div class="press-release-desc" style="text-align: justify;">
+        <p>Віртуальна фотовиставка «Між трьома озерами»:</p>
+        <p>Київська фотохудожниця та мисткиня Діана Шльонська, родом із Бородянки, презентує свій новий фото-проєкт — «Між трьома озерами».</p>
+        <p>Ця експозиція — це візуальна оповідь про невеличке село Озірщина, що знаходиться в Бучанському районі поруч із селищем Бородянка.</p>
+        <p>Ви зможете переглянути фотознімки місцевих краєвидів, кадри з сільського побуту людей та життя тварин, виконані в поетичній манері, притаманній авторці.</p>
+        <p>Ми з великою радістю запрошуємо вас зануритися в подорож до місця, де спогади оживають у кожному кадрі.</p>
+    </div>
 </section>
 
-<footer>Фотопроєкт «Між трьома озерами»</footer>
+<footer>
+    <p class="footer-contacts-label">Зв'язатися з авторкою</p>
+    <div class="footer-contacts-grid">
+        <a href="mailto:ksxndii@gmail.com" class="footer-contact-item">
+            <img src="./icons/mail.png" alt="">
+            <span>ksxndii@gmail.com</span>
+        </a>
+        <a href="https://www.instagram.com/nwk.ph" class="footer-contact-item" target="_blank">
+            <img src="./icons/instagram.png" alt="">
+            <span>nwk.ph</span>
+        </a>
+        <a href="tel:+380996505548" class="footer-contact-item">
+            <img src="./icons/phone.png" alt="">
+            <span>+380 99 650 55 48</span>
+        </a>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="footer-copy">Фотопроєкт «Між трьома озерами»</p>
+</footer>
 
 <script>
     const photos = [
-        {num:"01",title:"Зупинка «Озірщина»",desc:"Автобусна зупинка в осінніх барвах — ворота до села",tag:""},
-        {num:"02",title:"Ставок, очерети та осінь",desc:"",tag:""},
-        {num:"03",title:"Чоловік на березі",desc:"",tag:""},
-        {num:"04",title:"Відбиття верб",desc:"",tag:""},
-        {num:"05",title:"Озеро на околиці",desc:"",tag:""},
-        {num:"06",title:"Зорька",desc:"",tag:""},
-        {num:"07",title:"Старенька хата",desc:"",tag:""},
-        {num:"08",title:"Біля подвір'я",desc:"",tag:""},
-        {num:"09",title:"Криниця",desc:"",tag:""},
-        {num:"10",title:"Рукомийник",desc:"",tag:""},
-        {num:"11",title:"Літня кухня",desc:"",tag:""},
-        {num:"12",title:"Затишний куточок",desc:"",tag:""},
-        {num:"13",title:"Відлуння дитинства",desc:"",tag:""},
-        {num:"14",title:"Стежок за стежкою",desc:"",tag:""},
-        {num:"15",title:"Сонячна веранда",desc:"",tag:""},
-        {num:"16",title:"Ранкові клопоти",desc:"",tag:""},
-        {num:"17",title:"З любов'ю",desc:"",tag:""},
-        {num:"18",title:"Праця в коморі",desc:"",tag:""},
-        {num:"19",title:"Сільська майстерня",desc:"",tag:""},
-        {num:"20",title:"По сусідству",desc:"",tag:""},
-        {num:"21",title:"Осінній врожай",desc:"",tag:""},
-        {num:"22",title:"Осінній врожай",desc:"",tag:""},
-        {num:"23",title:"Врожайна мить",desc:"",tag:""},
-        {num:"24",title:"Господиня за роботою",desc:"",tag:""},
-        {num:"25",title:"Яблука",desc:"",tag:""},
-        {num:"26",title:"Натюрморт. Плоди сонця",desc:"",tag:""},
-        {num:"27",title:"Метушня в сараї",desc:"",tag:""},
-        {num:"28",title:"Сінник",desc:"",tag:""},
-        {num:"29",title:"Господар",desc:"",tag:""},
-        {num:"30",title:"Квітучий сад",desc:"",tag:""},
-        {num:"31",title:"Натюрморт. Виноград в кошику",desc:"",tag:""},
-        {num:"32",title:"Тиша по обіді",desc:"",tag:""},
-        {num:"33",title:"На подвір'ї",desc:"",tag:""},
-        {num:"34",title:"В очікуванні господаря",desc:"",tag:""},
-        {num:"35",title:"Кролики",desc:"",tag:""},
-        {num:"36",title:"Дорога додому",desc:"Польова стежка між деревами — шлях, що веде до рідної хати",tag:""},
+        {
+            num: "01",
+            title: "Зупинка «Озірщина»",
+            desc: "Автобусна зупинка в осінніх барвах — ворота до села, що зустрічають мене щоразу знайомим запахом чистого повітря.",
+            tag: ""
+        },
+        {
+            num: "02",
+            title: "В цей час на іншій стороні села жовкне листя дерев над тихою гладдю озер.",
+            desc: "",
+            tag: ""
+        },
+        {num: "03", title: "Десь серед очерету ховається рибалка, непорушно вдивляючись у воду.", desc: "", tag: ""},
+        {
+            num: "04",
+            title: "Старі похилені верби відбиваються на дзеркальній поверхні, ніби зʼєднуючись з відображенням в одне ціле.",
+            desc: "",
+            tag: ""
+        },
+        {num: "05", title: "Втомлені сірі хмари ніби спускаються перепочити поближче до води.", desc: "", tag: ""},
+        {num: "06", title: "Поруч поле, де пасуться корівки. А от і моя Зорька.", desc: "", tag: ""},
+        {
+            num: "07",
+            title: "Старенька хата самотньо розмістилась неподалік, лише вітер ностальгічно хитає гілки.",
+            desc: "",
+            tag: ""
+        },
+        {
+            num: "08",
+            title: "Знайома машина під старим горіхом, відчуття, що десь поруч на тебе вже чекають.",
+            desc: "",
+            tag: ""
+        },
+        {
+            num: "09",
+            title: "Осінній садок майорить кольорами. Гойдалка з мого дитинства, стежка веде до кринички з холодною чистою водою. ",
+            desc: "",
+            tag: ""
+        },
+        {
+            num: "10",
+            title: "Рукомийничок, такий зручний по хазяйству, особливо в теплу пору. Рідко такий вже зустрінеш.",
+            desc: "",
+            tag: ""
+        },
+        {
+            num: "11",
+            title: "Біля літньої кухні завжди стоїть багато приладдя. Бабуся готує там їжу тваринкам.",
+            desc: "",
+            tag: ""
+        },
+        {
+            num: "12",
+            title: "А ось і котики. Вони ніжні, але справжні мисливці на мишей. Охороняють яблучка на ґанку.",
+            desc: "",
+            tag: ""
+        },
+        {
+            num: "13",
+            title: "В хаті прохолодно та пахне полином. Рідне покуття, під яким бабуся латає речі за машинкою для шиття.",
+            desc: "",
+            tag: ""
+        },
+        {num: "14", title: "Стежок за стежкою під теплим жовтим світлом.", desc: "", tag: ""},
+        {
+            num: "15",
+            title: "Веранда залита сонцем здається казковою. Мій улюблений куточок, де так затишно відпочивати.",
+            desc: "",
+            tag: ""
+        },
+        {num: "16", title: "Заклопотаний силует дідуся.", desc: "", tag: ""},
+        {
+            num: "17",
+            title: "Бабусині руки, що ніколи не втомлюються, знову готують щось смачне, з любовʼю.",
+            desc: "",
+            tag: ""
+        },
+        {num: "18", title: "У коморі пахне осіннім врожаєм, а дідусь знову в роботі.", desc: "", tag: ""},
+        {
+            num: "19",
+            title: "Невеличка майстерня поруч з сусідським будинком — справжня скарбниця з безліччю цікавого приладдя.",
+            desc: "",
+            tag: ""
+        },
+        {num: "20", title: "На затишному подвірʼї пораються сусіди.", desc: "", tag: ""},
+        {
+            num: "21",
+            title: "Тут, на нашому затишному городі, я знову почуваюсь маленькою дівчинкою що бігає босоніж між грядками.",
+            desc: "",
+            tag: ""
+        },
+        {num: "22", title: "", desc: "", tag: ""},
+        {num: "23", title: "Дідусь неспішно крокує до хати з таким довгоочікуваним врожаєм.", desc: "", tag: ""},
+        {
+            num: "24",
+            title: "Після збору врожаю немає нічого приємнішого, ніж отак просто сидіти на подвір’ї біля хати, перебираючи зібране й спілкуючись із бабусею на всі теми світу.",
+            desc: "",
+            tag: ""
+        },
+        {num: "25", title: "Червоні яблучка в саду вже достигли.", desc: "", tag: ""},
+        {
+            num: "26",
+            title: "Під вечірніми променями спочивають плоди сонця. Такі дрібнички є моїм найбільшим натхненням.",
+            desc: "",
+            tag: ""
+        },
+        {num: "27", title: "А в сараї як зазвичай метушня.", desc: "", tag: ""},
+        {num: "28", title: "Вила в сіннику залишаються чекати початку завтрашнього дня.", desc: "", tag: ""},
+        {num: "29", title: "Втомлений роботою господар відпочиває на ґанку з цигаркою.", desc: "", tag: ""},
+        {
+            num: "30",
+            title: "Наш садок схожий на маленьку оранжерею, яка завжди милує око своїм затишком.",
+            desc: "",
+            tag: ""
+        },
+        {num: "31", title: "В осінньому повітрі стоїть солодкий запах стиглого винограду.", desc: "", tag: ""},
+        {
+            num: "32",
+            title: "Вечірня тиша настільки спокійна й не клопітка, що здається ніби час зупинився.",
+            desc: "",
+            tag: ""
+        },
+        {
+            num: "34",
+            title: "Маленькі друзі тихо відпочивають на подвірʼї, нарешті дочекавшись господарів.",
+            desc: "",
+            tag: ""
+        },
+        {num: "35", title: "", desc: "", tag: ""},
+        {
+            num: "36",
+            title: "Дорога додому",
+            desc: "Польова стежка між деревами — шлях, що веде до рідної хати.",
+            tag: ""
+        },
     ];
 
-    // 8 SVG ornament patterns (cycled through all 36 placeholders)
-    const ornaments = [
-        `<svg class="placeholder-ornament" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><g stroke="rgba(28,26,22,0.13)" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M300 390 C300 320 295 260 290 190 C285 120 282 75 286 38" stroke-width="1.2"/><path d="M290 190 C262 180 235 164 215 140" stroke-width="0.9"/><ellipse cx="209" cy="136" rx="15" ry="9" transform="rotate(-30 209 136)" fill="rgba(74,103,65,0.09)" stroke="rgba(74,103,65,0.19)"/><path d="M285 245 C252 236 222 222 198 204" stroke-width="0.9"/><ellipse cx="192" cy="200" rx="16" ry="9" transform="rotate(-20 192 200)" fill="rgba(74,103,65,0.09)" stroke="rgba(74,103,65,0.19)"/><path d="M293 155 C324 144 348 128 364 108" stroke-width="0.9"/><ellipse cx="368" cy="105" rx="15" ry="8" transform="rotate(25 368 105)" fill="rgba(74,103,65,0.09)" stroke="rgba(74,103,65,0.19)"/><path d="M288 118 C314 110 332 100 350 82" stroke-width="0.8"/><ellipse cx="353" cy="79" rx="12" ry="7" transform="rotate(20 353 79)" fill="rgba(74,103,65,0.09)" stroke="rgba(74,103,65,0.19)"/><path d="M291 275 C322 268 348 260 372 246" stroke-width="0.9"/><ellipse cx="376" cy="243" rx="15" ry="8" transform="rotate(15 376 243)" fill="rgba(74,103,65,0.09)" stroke="rgba(74,103,65,0.19)"/><path d="M130 390 C158 342 182 290 192 238 C202 186 198 148 194 108" stroke-width="1.0"/><path d="M192 238 C172 226 155 212 144 192" stroke-width="0.8"/><ellipse cx="140" cy="188" rx="12" ry="7" transform="rotate(-25 140 188)" fill="rgba(74,103,65,0.08)" stroke="rgba(74,103,65,0.16)"/><path d="M194 175 C212 165 226 152 236 136" stroke-width="0.8"/><ellipse cx="239" cy="133" rx="12" ry="7" transform="rotate(20 239 133)" fill="rgba(74,103,65,0.08)" stroke="rgba(74,103,65,0.16)"/><path d="M462 390 C442 342 430 290 425 238 C420 186 422 148 428 108" stroke-width="1.0"/><path d="M425 228 C447 217 462 204 472 184" stroke-width="0.8"/><ellipse cx="475" cy="180" rx="12" ry="7" transform="rotate(25 475 180)" fill="rgba(74,103,65,0.08)" stroke="rgba(74,103,65,0.16)"/><path d="M426 168 C408 158 396 144 388 126" stroke-width="0.8"/><ellipse cx="385" cy="122" rx="12" ry="7" transform="rotate(-20 385 122)" fill="rgba(74,103,65,0.08)" stroke="rgba(74,103,65,0.16)"/></g></svg>`,
-        `<svg class="placeholder-ornament" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><g stroke="rgba(28,26,22,0.13)" fill="none" stroke-linecap="round"><line x1="180" y1="390" x2="176" y2="200" stroke-width="1.0"/><line x1="176" y1="200" x2="155" y2="158" stroke-width="0.8"/><circle cx="151" cy="152" r="18" fill="rgba(139,111,71,0.07)" stroke="rgba(139,111,71,0.2)"/><circle cx="151" cy="152" r="6" fill="rgba(139,111,71,0.12)" stroke="rgba(139,111,71,0.25)"/><line x1="176" y1="200" x2="197" y2="170" stroke-width="0.8"/><ellipse cx="197" cy="164" rx="9" ry="14" transform="rotate(20 197 164)" fill="rgba(74,103,65,0.08)" stroke="rgba(74,103,65,0.18)"/><line x1="176" y1="272" x2="157" y2="256" stroke-width="0.8"/><ellipse cx="153" cy="252" rx="9" ry="13" transform="rotate(-15 153 252)" fill="rgba(74,103,65,0.08)" stroke="rgba(74,103,65,0.18)"/><line x1="300" y1="390" x2="303" y2="158" stroke-width="1.0"/><line x1="303" y1="158" x2="321" y2="118" stroke-width="0.8"/><g transform="translate(321,106)"><line x1="0" y1="-14" x2="0" y2="0" stroke-width="0.7" stroke="rgba(139,111,71,0.26)"/><line x1="14" y1="0" x2="0" y2="0" stroke-width="0.7" stroke="rgba(139,111,71,0.26)"/><line x1="10" y1="-10" x2="0" y2="0" stroke-width="0.7" stroke="rgba(139,111,71,0.26)"/><line x1="-10" y1="-10" x2="0" y2="0" stroke-width="0.7" stroke="rgba(139,111,71,0.26)"/><line x1="-14" y1="0" x2="0" y2="0" stroke-width="0.7" stroke="rgba(139,111,71,0.26)"/><circle cx="0" cy="0" r="6" fill="rgba(139,111,71,0.12)" stroke="rgba(139,111,71,0.3)"/></g><line x1="303" y1="250" x2="326" y2="234" stroke-width="0.8"/><ellipse cx="329" cy="231" rx="9" ry="13" transform="rotate(25 329 231)" fill="rgba(74,103,65,0.08)" stroke="rgba(74,103,65,0.18)"/><line x1="420" y1="390" x2="418" y2="218" stroke-width="1.0"/><line x1="418" y1="218" x2="400" y2="182" stroke-width="0.8"/><circle cx="396" cy="176" r="16" fill="rgba(139,111,71,0.07)" stroke="rgba(139,111,71,0.2)"/><circle cx="396" cy="176" r="5" fill="rgba(139,111,71,0.14)" stroke="rgba(139,111,71,0.28)"/><line x1="418" y1="300" x2="438" y2="284" stroke-width="0.8"/><ellipse cx="441" cy="281" rx="9" ry="13" transform="rotate(20 441 281)" fill="rgba(74,103,65,0.08)" stroke="rgba(74,103,65,0.18)"/><line x1="418" y1="218" x2="436" y2="193" stroke-width="0.8"/><ellipse cx="438" cy="189" rx="9" ry="14" transform="rotate(30 438 189)" fill="rgba(74,103,65,0.08)" stroke="rgba(74,103,65,0.18)"/></g></svg>`,
-        `<svg class="placeholder-ornament" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><g stroke="rgba(28,26,22,0.13)" fill="none" stroke-linecap="round"><line x1="160" y1="395" x2="158" y2="118" stroke-width="1.1"/><ellipse cx="158" cy="102" rx="6" ry="19" fill="rgba(139,111,71,0.15)" stroke="rgba(139,111,71,0.26)" stroke-width="0.8"/><path d="M158 150 C144 144 134 133 127 116" stroke-width="0.7"/><path d="M158 202 C171 196 181 184 186 168" stroke-width="0.7"/><line x1="240" y1="395" x2="243" y2="138" stroke-width="1.0"/><ellipse cx="243" cy="122" rx="5" ry="17" fill="rgba(139,111,71,0.12)" stroke="rgba(139,111,71,0.22)" stroke-width="0.8"/><path d="M243 175 C258 167 267 154 271 138" stroke-width="0.7"/><path d="M243 232 C229 225 221 214 217 198" stroke-width="0.7"/><line x1="350" y1="395" x2="347" y2="98" stroke-width="1.2"/><ellipse cx="347" cy="80" rx="7" ry="21" fill="rgba(139,111,71,0.18)" stroke="rgba(139,111,71,0.31)" stroke-width="0.8"/><path d="M347 152 C329 142 318 128 312 110" stroke-width="0.7"/><path d="M347 202 C363 194 373 180 379 162" stroke-width="0.7"/><path d="M347 262 C333 254 324 243 319 226" stroke-width="0.7"/><line x1="440" y1="395" x2="442" y2="153" stroke-width="1.0"/><ellipse cx="442" cy="137" rx="5" ry="17" fill="rgba(139,111,71,0.12)" stroke="rgba(139,111,71,0.22)" stroke-width="0.8"/><path d="M442 202 C456 193 465 180 469 162" stroke-width="0.7"/><path d="M442 252 C427 244 419 232 415 216" stroke-width="0.7"/></g></svg>`,
-        `<svg class="placeholder-ornament" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><g stroke="rgba(28,26,22,0.13)" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M148 390 L152 290 L148 238" stroke-width="1.0"/><path d="M148 238 C132 223 119 216 115 226 C111 236 119 246 129 246 C121 242 121 256 131 254 C125 258 129 270 141 266" stroke-width="0.85"/><path d="M148 238 C164 223 177 216 181 226 C185 236 177 246 167 246 C175 242 175 256 165 254 C171 258 167 270 155 266" stroke-width="0.85"/><path d="M152 290 C139 278 129 273 127 281 C125 289 133 295 141 293" stroke-width="0.8"/><path d="M270 390 L275 258 L265 198 L255 148 L265 118 L280 98 L295 118 L305 148 L295 198 L285 258 L290 390" fill="none" stroke-width="0.8"/><path d="M280 98 C265 83 248 78 240 88 C232 98 238 113 248 116 C240 110 238 123 248 126 C240 120 242 136 255 133 C248 140 252 153 265 148" stroke-width="0.9"/><path d="M280 98 C295 83 312 78 320 88 C328 98 322 113 312 116 C320 110 322 123 312 126 C320 120 318 136 305 133 C312 140 308 153 295 148" stroke-width="0.9"/><path d="M420 390 L424 268 L420 218" stroke-width="1.0"/><path d="M420 218 C404 203 391 196 387 206 C383 216 391 226 401 226 C393 222 393 236 403 234 C397 238 401 250 413 246" stroke-width="0.85"/><path d="M420 218 C436 203 448 196 452 206 C456 216 448 226 438 226 C446 222 446 236 436 234 C442 238 438 250 426 246" stroke-width="0.85"/><path d="M424 268 C411 256 401 252 399 260 C397 268 405 274 413 272" stroke-width="0.8"/></g></svg>`,
-        `<svg class="placeholder-ornament" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><g stroke="rgba(28,26,22,0.13)" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M50 385 C80 344 122 302 182 280 C242 258 302 268 362 248 C422 228 480 188 542 158" stroke-width="1.1"/><path d="M182 280 C176 264 168 250 157 243" stroke-width="0.8"/><ellipse cx="152" cy="239" rx="13" ry="9" transform="rotate(-30 152 239)" fill="rgba(74,103,65,0.09)" stroke="rgba(74,103,65,0.2)"/><path d="M182 280 C190 268 197 257 207 250" stroke-width="0.8"/><ellipse cx="211" cy="247" rx="13" ry="9" transform="rotate(20 211 247)" fill="rgba(74,103,65,0.09)" stroke="rgba(74,103,65,0.2)"/><path d="M302 268 C296 252 288 238 278 231" stroke-width="0.8"/><ellipse cx="273" cy="227" rx="13" ry="9" transform="rotate(-25 273 227)" fill="rgba(74,103,65,0.09)" stroke="rgba(74,103,65,0.2)"/><path d="M302 268 C310 254 318 243 328 236" stroke-width="0.8"/><ellipse cx="332" cy="233" rx="13" ry="9" transform="rotate(15 332 233)" fill="rgba(74,103,65,0.09)" stroke="rgba(74,103,65,0.2)"/><path d="M422 238 C416 222 408 211 398 204" stroke-width="0.8"/><ellipse cx="393" cy="200" rx="13" ry="9" transform="rotate(-20 393 200)" fill="rgba(74,103,65,0.09)" stroke="rgba(74,103,65,0.2)"/><path d="M422 238 C430 224 439 213 450 207" stroke-width="0.8"/><ellipse cx="454" cy="204" rx="13" ry="9" transform="rotate(25 454 204)" fill="rgba(74,103,65,0.09)" stroke="rgba(74,103,65,0.2)"/></g></svg>`,
-        `<svg class="placeholder-ornament" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><g stroke="rgba(74,103,65,0.18)" fill="none" stroke-linecap="round"><path d="M200 395 C202 352 205 308 208 268 C211 228 215 188 210 148" stroke-width="1.1" stroke="rgba(28,26,22,0.15)"/><path d="M208 268 C195 260 182 248 175 233" stroke-width="0.7"/><path d="M207 258 C196 254 185 246 180 235" stroke-width="0.5" stroke-dasharray="2,2"/><path d="M209 238 C220 230 228 218 232 204" stroke-width="0.7"/><path d="M208 228 C218 224 226 214 229 202" stroke-width="0.5" stroke-dasharray="2,2"/><path d="M209 208 C197 200 186 190 180 176" stroke-width="0.7"/><path d="M208 198 C198 194 188 186 183 174" stroke-width="0.5" stroke-dasharray="2,2"/><path d="M210 178 C222 170 230 158 233 144" stroke-width="0.7"/><path d="M209 168 C220 163 228 153 230 141" stroke-width="0.5" stroke-dasharray="2,2"/><path d="M390 395 C388 352 385 308 382 263 C379 223 376 183 380 146" stroke-width="1.1" stroke="rgba(28,26,22,0.15)"/><path d="M382 263 C396 254 407 243 413 229" stroke-width="0.7"/><path d="M383 253 C395 249 405 240 410 228" stroke-width="0.5" stroke-dasharray="2,2"/><path d="M381 238 C369 230 359 219 355 205" stroke-width="0.7"/><path d="M382 228 C371 224 362 215 359 203" stroke-width="0.5" stroke-dasharray="2,2"/><path d="M381 208 C394 200 403 190 407 176" stroke-width="0.7"/><path d="M382 198 C392 194 401 186 404 174" stroke-width="0.5" stroke-dasharray="2,2"/><path d="M380 178 C368 170 360 159 357 145" stroke-width="0.7"/><path d="M381 168 C370 163 362 153 359 141" stroke-width="0.5" stroke-dasharray="2,2"/></g></svg>`,
-        `<svg class="placeholder-ornament" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><g stroke="rgba(28,26,22,0.13)" fill="none" stroke-linecap="round"><path d="M100 395 C112 350 128 306 143 268 C158 228 172 192 176 158 C180 122 172 98 165 78" stroke-width="1.0"/><path d="M143 268 C127 258 113 245 107 229" stroke-width="0.8"/><circle cx="101" cy="223" r="5" fill="rgba(139,111,71,0.15)" stroke="rgba(139,111,71,0.3)" stroke-width="0.8"/><circle cx="93" cy="215" r="4" fill="rgba(139,111,71,0.12)" stroke="rgba(139,111,71,0.28)" stroke-width="0.8"/><circle cx="108" cy="212" r="4.5" fill="rgba(139,111,71,0.13)" stroke="rgba(139,111,71,0.28)" stroke-width="0.8"/><path d="M148 198 C162 188 172 175 176 159" stroke-width="0.8"/><circle cx="178" cy="153" r="5" fill="rgba(139,111,71,0.15)" stroke="rgba(139,111,71,0.3)" stroke-width="0.8"/><circle cx="186" cy="145" r="4" fill="rgba(139,111,71,0.12)" stroke="rgba(139,111,71,0.28)" stroke-width="0.8"/><path d="M157 238 C142 232 130 224 122 213" stroke-width="0.7"/><ellipse cx="118" cy="209" rx="11" ry="7" transform="rotate(-20 118 209)" fill="rgba(74,103,65,0.08)" stroke="rgba(74,103,65,0.18)"/><path d="M320 395 C318 342 315 292 311 253 C307 213 301 178 297 146 C293 114 294 90 299 70" stroke-width="1.0"/><path d="M311 253 C328 242 340 228 345 212" stroke-width="0.8"/><circle cx="349" cy="206" r="5" fill="rgba(139,111,71,0.15)" stroke="rgba(139,111,71,0.3)" stroke-width="0.8"/><circle cx="357" cy="198" r="4" fill="rgba(139,111,71,0.12)" stroke="rgba(139,111,71,0.28)" stroke-width="0.8"/><circle cx="351" cy="194" r="4.5" fill="rgba(139,111,71,0.13)" stroke="rgba(139,111,71,0.28)" stroke-width="0.8"/><path d="M309 203 C295 194 284 182 280 166" stroke-width="0.8"/><circle cx="277" cy="160" r="5" fill="rgba(139,111,71,0.15)" stroke="rgba(139,111,71,0.3)" stroke-width="0.8"/><circle cx="269" cy="153" r="4" fill="rgba(139,111,71,0.12)" stroke="rgba(139,111,71,0.28)" stroke-width="0.8"/><path d="M470 395 C468 342 464 292 461 253 C457 213 453 176 451 143" stroke-width="1.0"/><path d="M461 253 C476 242 487 230 491 214" stroke-width="0.8"/><circle cx="494" cy="208" r="5" fill="rgba(139,111,71,0.15)" stroke="rgba(139,111,71,0.3)" stroke-width="0.8"/><circle cx="502" cy="200" r="4" fill="rgba(139,111,71,0.12)" stroke="rgba(139,111,71,0.28)" stroke-width="0.8"/><path d="M459 203 C445 193 434 181 430 165" stroke-width="0.8"/><ellipse cx="426" cy="161" rx="11" ry="7" transform="rotate(-25 426 161)" fill="rgba(74,103,65,0.08)" stroke="rgba(74,103,65,0.18)"/></g></svg>`,
-        `<svg class="placeholder-ornament" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><g stroke="rgba(28,26,22,0.12)" fill="none" stroke-linecap="round"><line x1="220" y1="395" x2="222" y2="178" stroke-width="1.0"/><g transform="translate(222,168)"><circle cx="0" cy="0" r="7" fill="rgba(139,111,71,0.1)" stroke="rgba(139,111,71,0.22)" stroke-width="0.8"/><line x1="0" y1="-7" x2="0" y2="-22" stroke-width="0.6" stroke="rgba(139,111,71,0.26)"/><line x1="6.5" y1="-3.5" x2="20" y2="-12" stroke-width="0.6" stroke="rgba(139,111,71,0.26)"/><line x1="6.5" y1="3.5" x2="20" y2="12" stroke-width="0.6" stroke="rgba(139,111,71,0.26)"/><line x1="0" y1="7" x2="0" y2="22" stroke-width="0.6" stroke="rgba(139,111,71,0.26)"/><line x1="-6.5" y1="3.5" x2="-20" y2="12" stroke-width="0.6" stroke="rgba(139,111,71,0.26)"/><line x1="-6.5" y1="-3.5" x2="-20" y2="-12" stroke-width="0.6" stroke="rgba(139,111,71,0.26)"/><line x1="4.5" y1="-5.5" x2="14" y2="-18" stroke-width="0.6" stroke="rgba(139,111,71,0.2)"/><line x1="-4.5" y1="-5.5" x2="-14" y2="-18" stroke-width="0.6" stroke="rgba(139,111,71,0.2)"/><circle cx="0" cy="-22" r="2.5" fill="rgba(139,111,71,0.15)"/><circle cx="20" cy="-12" r="2" fill="rgba(139,111,71,0.15)"/><circle cx="20" cy="12" r="2" fill="rgba(139,111,71,0.15)"/><circle cx="0" cy="22" r="2.5" fill="rgba(139,111,71,0.15)"/><circle cx="-20" cy="12" r="2" fill="rgba(139,111,71,0.15)"/><circle cx="-20" cy="-12" r="2" fill="rgba(139,111,71,0.15)"/><circle cx="14" cy="-18" r="2" fill="rgba(139,111,71,0.15)"/><circle cx="-14" cy="-18" r="2" fill="rgba(139,111,71,0.15)"/></g><line x1="222" y1="278" x2="202" y2="263" stroke-width="0.8"/><ellipse cx="198" cy="260" rx="10" ry="7" transform="rotate(-20 198 260)" fill="rgba(74,103,65,0.08)" stroke="rgba(74,103,65,0.16)"/><line x1="222" y1="312" x2="242" y2="296" stroke-width="0.8"/><ellipse cx="246" cy="293" rx="10" ry="7" transform="rotate(20 246 293)" fill="rgba(74,103,65,0.08)" stroke="rgba(74,103,65,0.16)"/><line x1="380" y1="395" x2="376" y2="208" stroke-width="1.0"/><g transform="translate(376,198)"><circle cx="0" cy="0" r="6" fill="rgba(139,111,71,0.1)" stroke="rgba(139,111,71,0.22)" stroke-width="0.8"/><line x1="0" y1="-6" x2="0" y2="-20" stroke-width="0.6" stroke="rgba(139,111,71,0.26)"/><line x1="5.5" y1="-3" x2="18" y2="-10" stroke-width="0.6" stroke="rgba(139,111,71,0.26)"/><line x1="5.5" y1="3" x2="18" y2="10" stroke-width="0.6" stroke="rgba(139,111,71,0.26)"/><line x1="-5.5" y1="3" x2="-18" y2="10" stroke-width="0.6" stroke="rgba(139,111,71,0.26)"/><line x1="-5.5" y1="-3" x2="-18" y2="-10" stroke-width="0.6" stroke="rgba(139,111,71,0.26)"/><circle cx="0" cy="-20" r="2" fill="rgba(139,111,71,0.15)"/><circle cx="18" cy="-10" r="2" fill="rgba(139,111,71,0.15)"/><circle cx="18" cy="10" r="2" fill="rgba(139,111,71,0.15)"/><circle cx="-18" cy="10" r="2" fill="rgba(139,111,71,0.15)"/><circle cx="-18" cy="-10" r="2" fill="rgba(139,111,71,0.15)"/></g><line x1="376" y1="298" x2="356" y2="284" stroke-width="0.8"/><ellipse cx="352" cy="281" rx="10" ry="7" transform="rotate(-22 352 281)" fill="rgba(74,103,65,0.08)" stroke="rgba(74,103,65,0.16)"/></g></svg>`,
-    ];
-
-    const wideSet = new Set([1,36]);
+    const wideSet = new Set([1, 35]);
+    const centerSet = new Set([]);
     const wall = document.getElementById("photoWall");
 
-    photos.forEach((p,i) => {
-        const n = i+1;
-        const isWide = wideSet.has(n);
-        const ornSvg = ornaments[i % ornaments.length];
+    photos.forEach((p, i) => {
+        const n = i + 1;
 
-        const entry = document.createElement("div");
-        entry.className = "photo-entry" + (isWide ? " wide" : "");
+        const isWide = wideSet.has(n);
+        const isCenter = centerSet.has(n);
+
+        const entry = document.createElement("div"); // ✔ спочатку створюємо
+
+        let className = "photo-entry";
+        if (isWide) className += " wide";
+        if (isCenter) className += " center";
+
+        entry.className = className;
 
         const frameDiv = document.createElement("div");
         frameDiv.className = "photo-frame";
 
         const img = document.createElement("img");
-
         img.alt = p.title;
         img.loading = "lazy";
         img.src = `./photos/${p.num}.JPG`;
 
-        img.onload = () => {
-            console.log("✅ LOADED:", img.src);
-        };
-
         img.onerror = () => {
-            console.log("❌ FAILED:", img.src);
-
             frameDiv.innerHTML =
-                "<div class=\"photo-frame-placeholder\">" +
-                ornSvg +
-                "<span class=\"placeholder-num\">" + p.num + "</span>" +
-                "<span class=\"placeholder-hint\">photos/" + p.num + ".jpg</span>" +
-                "</div>";
+                `<div class="photo-frame-placeholder">
+                <span class="placeholder-num">${p.num}</span>
+                <span class="placeholder-hint">photos/${p.num}.jpg</span>
+             </div>`;
         };
 
         frameDiv.appendChild(img);
@@ -248,61 +520,179 @@
 
         const labelDiv = document.createElement("div");
         labelDiv.className = "photo-label";
-        labelDiv.innerHTML = "<div class=\"photo-title-ex\">" + p.title + "</div><div class=\"photo-desc-ex\">" + p.desc + "</div><span class=\"photo-tag-ex\">" + p.tag + "</span>";
+        labelDiv.innerHTML =
+            `<div class="photo-title-ex">${p.title}</div>
+         <div class="photo-desc-ex">${p.desc || ""}</div>`;
 
         entry.appendChild(frameDiv);
         entry.appendChild(labelDiv);
         wall.appendChild(entry);
     });
 
-    const revObs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add("visible"); }), {threshold:0.08});
+    const endingP = document.createElement("p");
+    endingP.className = "closing-text";
+    endingP.style.cssText = "font-size: 22px; text-align: center; padding: 3.5rem 0 0; border-top: 0.5px solid var(--border); max-width: 600px; margin: 0 auto;";
+    endingP.textContent = "Для мене Озірщина — це нескінченне джерело любові до всього живого, місце, де я по-справжньому розумію, що таке дім.";
+    wall.appendChild(endingP);
+
+
+    const revObs = new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add("visible");
+    }), {threshold: 0.08});
     document.querySelectorAll(".photo-entry").forEach(el => revObs.observe(el));
 
-    let lbIdx=0;
-    function openLb(idx){lbIdx=idx;renderLb();document.getElementById("lightbox").classList.add("open");document.body.style.overflow="hidden";}
-    function closeLb(){document.getElementById("lightbox").classList.remove("open");document.body.style.overflow="";}
-    function lbNav(dir){lbIdx=(lbIdx+dir+photos.length)%photos.length;renderLb();}
-    function renderLb(){
-        const p=photos[lbIdx];
-        document.getElementById("lbNum").textContent=p.num+" / 36";
-        document.getElementById("lbTitle").textContent=p.title;
-        document.getElementById("lbDesc").textContent=p.desc;
-        const wrap=document.getElementById("lbWrap");wrap.innerHTML="";
-        const img=document.createElement("img");img.alt=p.title;
-        img.onload=()=>img.classList.add("loaded");
-        img.onerror=()=>{wrap.innerHTML="<div class=\"lb-no-photo\"><strong>"+p.num+" — "+p.title+"</strong>Додайте файл <code>photos/"+p.num+".jpg</code></div>";};
-        img.src="photos/"+p.num+".JPG";wrap.appendChild(img);
-    }
-    document.getElementById("lightbox").addEventListener("click",e=>{if(e.target===document.getElementById("lightbox"))closeLb();});
-    document.addEventListener("keydown",e=>{if(!document.getElementById("lightbox").classList.contains("open"))return;if(e.key==="ArrowRight")lbNav(1);if(e.key==="ArrowLeft")lbNav(-1);if(e.key==="Escape")closeLb();});
+    let lbIdx = 0;
 
-    let audioCtx=null,masterGain=null,isPlaying=false,animFrame=null;
-    function initAudio(){
-        if(audioCtx)return;
-        audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-        masterGain=audioCtx.createGain();masterGain.gain.setValueAtTime(0,audioCtx.currentTime);masterGain.connect(audioCtx.destination);
-        function noise(dur){const buf=audioCtx.createBuffer(1,audioCtx.sampleRate*dur,audioCtx.sampleRate);const d=buf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;const src=audioCtx.createBufferSource();src.buffer=buf;src.loop=true;return src;}
-        const wind=noise(4);const wf=audioCtx.createBiquadFilter();wf.type="lowpass";wf.frequency.value=270;const wg=audioCtx.createGain();wg.gain.value=0.15;wind.connect(wf);wf.connect(wg);wg.connect(masterGain);wind.start();
-        const water=noise(6);const wtf=audioCtx.createBiquadFilter();wtf.type="bandpass";wtf.frequency.value=650;wtf.Q.value=2;const wtg=audioCtx.createGain();wtg.gain.value=0.055;water.connect(wtf);wtf.connect(wtg);wtg.connect(masterGain);water.start();
-        const drone=audioCtx.createOscillator();drone.type="triangle";drone.frequency.value=52;const dg=audioCtx.createGain();dg.gain.value=0.03;drone.connect(dg);dg.connect(masterGain);drone.start();
-        [1080,1350,1620,870].forEach((freq,i)=>{const osc=audioCtx.createOscillator();osc.type="sine";osc.frequency.value=freq;const lfo=audioCtx.createOscillator();lfo.frequency.value=3.5+i*0.7;const lg=audioCtx.createGain();lg.gain.value=6;lfo.connect(lg);lg.connect(osc.frequency);const bg=audioCtx.createGain();bg.gain.value=0;osc.connect(bg);bg.connect(masterGain);osc.start();lfo.start();(function chirp(){if(!isPlaying){setTimeout(chirp,2000);return;}const t=audioCtx.currentTime,d=0.07+Math.random()*0.09;bg.gain.setValueAtTime(0,t);bg.gain.linearRampToValueAtTime(0.02,t+0.01);bg.gain.exponentialRampToValueAtTime(0.0001,t+d);setTimeout(chirp,(3+Math.random()*9+i)*1000);})();});
+    function openLb(idx) {
+        lbIdx = idx;
+        renderLb();
+        document.getElementById("lightbox").classList.add("open");
+        document.body.style.overflow = "hidden";
     }
-    function toggleAudio(){
-        initAudio();const btn=document.getElementById("playBtn");
-        if(!isPlaying){audioCtx.resume();masterGain.gain.cancelScheduledValues(audioCtx.currentTime);masterGain.gain.linearRampToValueAtTime(0.72,audioCtx.currentTime+2.5);isPlaying=true;btn.innerHTML="<svg viewBox=\"0 0 24 24\" width=\"14\" height=\"14\" fill=\"#f2ede3\"><path d=\"M6 19h4V5H6v14zm8-14v14h4V5h-4z\"/></svg>";const s=performance.now();(function tick(now){document.getElementById("progFill").style.width=((now-s)%240000/240000*100)+"%";animFrame=requestAnimationFrame(tick);})(performance.now());}
-        else{masterGain.gain.linearRampToValueAtTime(0,audioCtx.currentTime+1.5);setTimeout(()=>audioCtx.suspend(),1600);isPlaying=false;btn.innerHTML="<svg viewBox=\"0 0 24 24\" width=\"14\" height=\"14\" fill=\"#f2ede3\"><path d=\"M8 5v14l11-7z\"/></svg>";if(animFrame)cancelAnimationFrame(animFrame);}
+
+    function closeLb() {
+        document.getElementById("lightbox").classList.remove("open");
+        document.body.style.overflow = "";
+    }
+
+    function lbNav(dir) {
+        lbIdx = (lbIdx + dir + photos.length) % photos.length;
+        renderLb();
+    }
+
+    function renderLb() {
+        const p = photos[lbIdx];
+        document.getElementById("lbNum").textContent = p.num + " / 36";
+        document.getElementById("lbTitle").textContent = p.title;
+        document.getElementById("lbDesc").textContent = p.desc;
+        const wrap = document.getElementById("lbWrap");
+        wrap.innerHTML = "";
+        const img = document.createElement("img");
+        img.alt = p.title;
+        img.onload = () => img.classList.add("loaded");
+        img.onerror = () => {
+            wrap.innerHTML = "<div class=\"lb-no-photo\"><strong>" + p.num + " — " + p.title + "</strong>Додайте файл <code>photos/" + p.num + ".jpg</code></div>";
+        };
+        img.src = "photos/" + p.num + ".JPG";
+        wrap.appendChild(img);
+    }
+
+    document.getElementById("lightbox").addEventListener("click", e => {
+        if (e.target === document.getElementById("lightbox")) closeLb();
+    });
+    document.addEventListener("keydown", e => {
+        if (!document.getElementById("lightbox").classList.contains("open")) return;
+        if (e.key === "ArrowRight") lbNav(1);
+        if (e.key === "ArrowLeft") lbNav(-1);
+        if (e.key === "Escape") closeLb();
+    });
+
+    let audioCtx = null, masterGain = null, isPlaying = false, animFrame = null;
+
+    function initAudio() {
+        if (audioCtx) return;
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        masterGain = audioCtx.createGain();
+        masterGain.gain.setValueAtTime(0, audioCtx.currentTime);
+        masterGain.connect(audioCtx.destination);
+
+        function noise(dur) {
+            const buf = audioCtx.createBuffer(1, audioCtx.sampleRate * dur, audioCtx.sampleRate);
+            const d = buf.getChannelData(0);
+            for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+            const src = audioCtx.createBufferSource();
+            src.buffer = buf;
+            src.loop = true;
+            return src;
+        }
+
+        const wind = noise(4);
+        const wf = audioCtx.createBiquadFilter();
+        wf.type = "lowpass";
+        wf.frequency.value = 270;
+        const wg = audioCtx.createGain();
+        wg.gain.value = 0.15;
+        wind.connect(wf);
+        wf.connect(wg);
+        wg.connect(masterGain);
+        wind.start();
+        const water = noise(6);
+        const wtf = audioCtx.createBiquadFilter();
+        wtf.type = "bandpass";
+        wtf.frequency.value = 650;
+        wtf.Q.value = 2;
+        const wtg = audioCtx.createGain();
+        wtg.gain.value = 0.055;
+        water.connect(wtf);
+        wtf.connect(wtg);
+        wtg.connect(masterGain);
+        water.start();
+        const drone = audioCtx.createOscillator();
+        drone.type = "triangle";
+        drone.frequency.value = 52;
+        const dg = audioCtx.createGain();
+        dg.gain.value = 0.03;
+        drone.connect(dg);
+        dg.connect(masterGain);
+        drone.start();
+        [1080, 1350, 1620, 870].forEach((freq, i) => {
+            const osc = audioCtx.createOscillator();
+            osc.type = "sine";
+            osc.frequency.value = freq;
+            const lfo = audioCtx.createOscillator();
+            lfo.frequency.value = 3.5 + i * 0.7;
+            const lg = audioCtx.createGain();
+            lg.gain.value = 6;
+            lfo.connect(lg);
+            lg.connect(osc.frequency);
+            const bg = audioCtx.createGain();
+            bg.gain.value = 0;
+            osc.connect(bg);
+            bg.connect(masterGain);
+            osc.start();
+            lfo.start();
+            (function chirp() {
+                if (!isPlaying) {
+                    setTimeout(chirp, 2000);
+                    return;
+                }
+                const t = audioCtx.currentTime, d = 0.07 + Math.random() * 0.09;
+                bg.gain.setValueAtTime(0, t);
+                bg.gain.linearRampToValueAtTime(0.02, t + 0.01);
+                bg.gain.exponentialRampToValueAtTime(0.0001, t + d);
+                setTimeout(chirp, (3 + Math.random() * 9 + i) * 1000);
+            })();
+        });
+    }
+
+    function toggleAudio() {
+        initAudio();
+        const btn = document.getElementById("playBtn");
+        if (!isPlaying) {
+            audioCtx.resume();
+            masterGain.gain.cancelScheduledValues(audioCtx.currentTime);
+            masterGain.gain.linearRampToValueAtTime(0.72, audioCtx.currentTime + 2.5);
+            isPlaying = true;
+            btn.innerHTML = "<svg viewBox=\"0 0 24 24\" width=\"14\" height=\"14\" fill=\"#f2ede3\"><path d=\"M6 19h4V5H6v14zm8-14v14h4V5h-4z\"/></svg>";
+            const s = performance.now();
+            (function tick(now) {
+                document.getElementById("progFill").style.width = ((now - s) % 240000 / 240000 * 100) + "%";
+                animFrame = requestAnimationFrame(tick);
+            })(performance.now());
+        } else {
+            masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1.5);
+            setTimeout(() => audioCtx.suspend(), 1600);
+            isPlaying = false;
+            btn.innerHTML = "<svg viewBox=\"0 0 24 24\" width=\"14\" height=\"14\" fill=\"#f2ede3\"><path d=\"M8 5v14l11-7z\"/></svg>";
+            if (animFrame) cancelAnimationFrame(animFrame);
+        }
     }
 
     function scrollToExhibition() {
         const el = document.getElementById("exhibition");
-
-        const offset = -175;
+        const offset = -216;
         const top = el.getBoundingClientRect().top + window.scrollY - offset;
-
-        window.scrollTo({
-            top,
-            behavior: "smooth"
-        });
+        window.scrollTo({top, behavior: "smooth"});
     }
 </script>
 </body>
